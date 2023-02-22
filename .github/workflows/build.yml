@@ -6,6 +6,8 @@ jobs:
     uses: miladbeigi/central-workflow/.github/workflows/go-build.yml@main
   manual-workflow:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
       - uses: trstringer/manual-approval@v1
         with:
