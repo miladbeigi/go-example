@@ -1,14 +1,18 @@
 name: go-build
 run-name: ${{ github.actor }} is running the go build pipeline
 on: [push]
+
 jobs:
+
   call-workflow-in-another-repo:
     uses: miladbeigi/central-workflow/.github/workflows/go-build.yml@main
+
   manual-workflow:
     runs-on: ubuntu-latest
     permissions:
       issues: write
     steps:
+
       - uses: trstringer/manual-approval@v1
         with:
           secret: ${{ github.TOKEN }}
@@ -19,3 +23,7 @@ jobs:
           exclude-workflow-initiator-as-approver: false
           additional-approved-words: ''
           additional-denied-words: ''        
+
+      - name: Deploying the application
+        run: |
+          echo "Deploying the application"
