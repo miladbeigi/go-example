@@ -1,0 +1,19 @@
+name: go-build
+run-name: ${{ github.actor }} is running the go build pipeline
+on: [push]
+jobs:
+  call-workflow-in-another-repo:
+    uses: miladbeigi/central-workflow/.github/workflows/go-build.yml@main
+  manual-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{ github.TOKEN }}
+          approvers: miladbeigi
+          minimum-approvals: 1
+          issue-title: "Deploying"
+          issue-body: "Please approve or deny the deployment"
+          exclude-workflow-initiator-as-approver: false
+          additional-approved-words: ''
+          additional-denied-words: ''        
