@@ -1,0 +1,19 @@
+name: go-manual
+run-name: Running manual release workflow
+on: 
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version of the application to be published'
+        required: true
+        type: string
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    if: contains(fromJSON('["miladbeigi", "anotherActor"]'), github.triggering_actor)
+    # ${{ github.triggering_actor }} == "miladbeigi"
+    steps:
+      - name: Release step demo
+        run: |
+          echo "Release the application using the version=${{ inputs.version }}"
