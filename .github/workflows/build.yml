@@ -22,7 +22,13 @@ jobs:
           issue-body: "Please approve or deny the deployment"
           exclude-workflow-initiator-as-approver: false
           additional-approved-words: ''
-          additional-denied-words: ''        
+          additional-denied-words: ''
+      
+      - name: Show GitHub context   
+        env: 
+          GITHUB_CONTEXT: ${{ toJson(github) }}   
+        run: echo "$GITHUB_CONTEXT"
+        shell: bash
 
       - name: Deploying the application
         run: |
